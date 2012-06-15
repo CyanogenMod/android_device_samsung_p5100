@@ -1,0 +1,3 @@
+require board=espresso10
+require version-bootloader=P5100XWALE2
+require version-baseband=P5100XWALE2
