@@ -39,7 +39,7 @@
              android:emulated="true"
              android:mtpReserve="100" />
 
-    <storage android:mountPoint="/mnt/extsdcard"
+    <storage android:mountPoint="/mnt/extSdCard"
              android:storageDescription="@string/storage_sd_card"
              android:primary="false"
              android:removable="true" />
