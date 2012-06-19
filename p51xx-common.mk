@@ -14,9 +14,14 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/samsung/p5100
-
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+# The gps config appropriate for this device
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
+
+LOCAL_PATH := device/samsung/p5100
 
 # This device is hdpi.
 PRODUCT_AAPT_CONFIG := normal hdpi
