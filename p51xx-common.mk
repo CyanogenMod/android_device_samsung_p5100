@@ -40,6 +40,7 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/default_gain.conf:system/etc/default_gain.conf \
 	$(LOCAL_PATH)/configs/tinyucm.conf:system/etc/tinyucm.conf \
 	$(LOCAL_PATH)/configs/Volume.db:system/etc/Volume.db
 
