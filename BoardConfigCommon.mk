@@ -102,7 +102,10 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/p5100/include
+# Charging mode
+BOARD_CHARGER_RES := device/samsung/p5100/res/charger
+
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/p5100/overlay/include
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
