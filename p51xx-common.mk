@@ -30,7 +30,7 @@ PRODUCT_LOCALES += hdpi
 
 # Init files
 PRODUCT_COPY_FILES := \
-	$(LOCAL_PATH)/init.espresso.usb.rc:root/init.espresso.usb.rc \
+	$(LOCAL_PATH)/init.espresso10.usb.rc:root/init.espresso10.usb.rc \
 	$(LOCAL_PATH)/init.espresso10.rc:root/init.espresso10.rc \
 	$(LOCAL_PATH)/ueventd.espresso10.rc:root/ueventd.espresso10.rc
 
