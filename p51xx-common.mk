@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
