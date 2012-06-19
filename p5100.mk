@@ -26,3 +26,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.ril_class=Smdk4210RIL \
 	mobiledata.interfaces=pdp0,wlan0,gprs,ppp0
+
+# Use the non-open-source parts, if they're present
+$(call inherit-product, vendor/samsung/p51xx/p5100-vendor.mk)

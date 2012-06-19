@@ -25,6 +25,3 @@ TARGET_KERNEL_CONFIG := cyanogenmod_p5100_defconfig
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := p5100,GT-P5100
-
-# Use the non-open-source parts, if they're present
--include vendor/samsung/p51xx/p5100-vendor-blobs.mk
