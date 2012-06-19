@@ -85,6 +85,7 @@ PRODUCT_COPY_FILES += \
 
 # Packages
 PRODUCT_PACKAGES += \
+    audio.a2dp.default \
 	lights.piranha \
 	libtinyalsa \
 	libaudioutils \
