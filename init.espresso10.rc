@@ -1,4 +1,4 @@
-import init.espresso.usb.rc
+import init.espresso10.usb.rc
 
 on early-init
     export EXTERNAL_STORAGE /mnt/sdcard
