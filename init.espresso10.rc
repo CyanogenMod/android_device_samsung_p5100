@@ -36,6 +36,8 @@ on fs
 	chown radio system /efs
 	chmod 0775 /efs
 
+    setprop ro.crypto.fuse_sdcard true
+
 	mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on post-fs-data
