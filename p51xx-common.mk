@@ -131,8 +131,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.opengles.version=131072
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.sf.lcd_density=240
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+	persist.sys.usb.config=mtp
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
