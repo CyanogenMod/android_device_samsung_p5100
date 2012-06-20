@@ -1,0 +1,3 @@
+system/lib/libril.so
+system/lib/libsec-ril.so
+system/lib/libsecril-client.so
