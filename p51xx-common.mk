@@ -89,9 +89,7 @@ PRODUCT_PACKAGES += \
 	lights.piranha \
 	libtinyalsa \
 	libaudioutils \
-	libinvensense_mpl \
-	charger \
-	charger_res_images
+	libinvensense_mpl
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
