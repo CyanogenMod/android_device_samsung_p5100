@@ -58,12 +58,6 @@ on post-fs-data
 	chmod 0660 /dev/usb_mtp_gadget
 	chown system system /dev/usb_mtp_gadget
 
-# DVFS - limit cpufreq during booting sequence
-	write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor userspace
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed 1000000
-    write /data/dvfs "sleep 10 && echo 1000000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed && sleep 30 && echo interactive > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-    chmod 0770 /data/dvfs
-
     write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 800000
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq
 
