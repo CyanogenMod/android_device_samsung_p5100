@@ -24,4 +24,4 @@ TARGET_KERNEL_SOURCE := kernel/samsung/espresso10
 TARGET_KERNEL_CONFIG := cyanogenmod_p5100_defconfig
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := p5100,GT-P5100
+TARGET_OTA_ASSERT_DEVICE := p5100,GT-P5100,espresso10rf,espresso10rfxx
