@@ -18,6 +18,8 @@ $(call inherit-product, device/samsung/p5100/p51xx-common.mk)
 
 LOCAL_PATH := device/samsung/p5100
 
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
 # Packages
 PRODUCT_PACKAGES += \
 	SamsungServiceMode
