@@ -89,7 +89,10 @@ PRODUCT_PACKAGES += \
 	lights.piranha \
 	libtinyalsa \
 	libaudioutils \
-	libinvensense_mpl
+	libinvensense_mpl \
+	hwcomposer.omap4 \
+	smc_pa_ctrl \
+	tf_daemon
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
