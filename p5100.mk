@@ -29,5 +29,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.telephony.ril_class=Smdk4210RIL \
 	mobiledata.interfaces=pdp0,wlan0,gprs,ppp0
 
+# These are the hardware-specific features
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
+    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
 # Use the non-open-source parts, if they're present
 $(call inherit-product, vendor/samsung/p51xx/p5100-vendor.mk)
