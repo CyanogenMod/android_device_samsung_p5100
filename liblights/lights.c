@@ -54,7 +54,7 @@ write_int(char const *path, int value)
         return amt == -1 ? -errno : 0;
     } else {
         if (already_warned == 0) {
-            LOGE("write_int failed to open %s\n", path);
+            ALOGE("write_int failed to open %s\n", path);
             already_warned = 1;
         }
         return -errno;
@@ -84,7 +84,7 @@ set_light_backlight(struct light_device_t *dev,
 	int brightness = rgb_to_brightness(state);
 
 	pthread_mutex_lock(&g_lock);
-    LOGD("set_light_backlight brightness=%d\n", brightness);
+    ALOGD("set_light_backlight brightness=%d\n", brightness);
 	err = write_int(LCD_FILE, brightness);
 	pthread_mutex_unlock(&g_lock);
 
@@ -93,7 +93,7 @@ set_light_backlight(struct light_device_t *dev,
 
 static int close_lights(struct light_device_t *dev)
 {
-	LOGV("close_light is called");
+	ALOGV("close_light is called");
 	if (dev)
 		free(dev);
 
@@ -131,7 +131,7 @@ static struct hw_module_methods_t lights_module_methods = {
 	.open =  open_lights,
 };
 
-const struct hw_module_t HAL_MODULE_INFO_SYM = {
+struct hw_module_t HAL_MODULE_INFO_SYM = {
 	.tag = HARDWARE_MODULE_TAG,
 	.version_major = 1,
 	.version_minor = 0,

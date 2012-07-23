@@ -1,15 +1,20 @@
 import init.espresso10.usb.rc
 
 on early-init
-    export EXTERNAL_STORAGE /mnt/sdcard
-    mkdir /mnt/sdcard 0000 system system
-    mkdir /mnt/extSdCard 0000 system system
-    mkdir /mnt/usbdisk 0000 system system
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
+    mkdir /storage 0050 system sdcard_r
+    mkdir /storage/sdcard0 0000 system system
+    mkdir /storage/sdcard1 0775 system system
+    mkdir /storage/usbdisk0 0775 system system
 
     # for backwards compatibility
-    symlink /efs /factory
-    symlink /mnt/sdcard /sdcard
-    symlink /mnt/extSdCard /extSdCard
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard1 /extSdCard
+    symlink /storage/sdcard1 /mnt/extSdCard
+    symlink /storage/usbdisk0 /usbdisk0
+    symlink /storage/usbdisk0 /mnt/usbdisk0
 
 on init
 # Vibetonz
@@ -24,59 +29,61 @@ on init
     chmod 0777 /dev/ion
 
 # PVR
-	chmod 0666 /dev/pvrsrvkm
+    chmod 0666 /dev/pvrsrvkm
+
+loglevel 7
 
 on fs
-	mkdir /efs
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system wait rw   
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system ro remount
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/DATAFS /data wait noatime nosuid nodev crypt discard,noauto_da_alloc
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/CACHE /cache wait noatime nosuid nodev nomblk_io_submit,errors=panic
-	mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/EFS /efs wait rw
-	chown radio system /efs
-	chmod 0775 /efs
+    mkdir /efs
+    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system wait rw   
+    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system ro remount
+    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/DATAFS /data wait noatime nosuid nodev crypt discard,noauto_da_alloc
+    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/CACHE /cache wait noatime nosuid nodev nomblk_io_submit,errors=panic
+    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/EFS /efs wait rw
+    chown radio system /efs
+    chmod 0775 /efs
 
     setprop ro.crypto.fuse_sdcard true
 
-	mount debugfs /sys/kernel/debug /sys/kernel/debug
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on post-fs-data
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
-    mkdir /data/media 0775 media_rw media_rw
+    # we will remap this as /storage/sdcard0 with the sdcard fuse tool
+    mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
     mkdir /data/misc/wifi 0770 wifi system
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
 
     mkdir /data/misc/dhcp 0775 dhcp dhcp
-	mkdir /data/misc/radio 0771 radio system
+    mkdir /data/misc/radio 0771 radio system
     mkdir /data/misc/radio/hatp 0771 radio system
     chown radio radio /data/misc/radio
 
     chown dhcp dhcp /data/misc/dhcp
 
 # MTP Device permission.
-	chmod 0660 /dev/usb_mtp_gadget
-	chown system system /dev/usb_mtp_gadget
+    chmod 0660 /dev/usb_mtp_gadget
+    chown system system /dev/usb_mtp_gadget
 
     write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 800000
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq
 
 #DVFS Lock
-	chown radio system /sys/power/cpufreq_min_limit
-	chown radio system /sys/power/cpufreq_max_limit
-	chown radio system /sys/power/cpufreq_table
-	chmod 0664	/sys/power/cpufreq_min_limit
-	chmod 0664	/sys/power/cpufreq_max_limit
-	chmod 0664	/sys/power/cpufreq_table
+    chown radio system /sys/power/cpufreq_min_limit
+    chown radio system /sys/power/cpufreq_max_limit
+    chown radio system /sys/power/cpufreq_table
+    chmod 0664  /sys/power/cpufreq_min_limit
+    chmod 0664  /sys/power/cpufreq_max_limit
+    chmod 0664  /sys/power/cpufreq_table
 
 # permissions for bluetooth.
-	setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
-	chown bluetooth bluetooth ro.bt.bdaddr_path
-	chown bluetooth bluetooth /dev/ttyO1
-	chmod 0600 /dev/ttyO1
-	chmod 0660 /sys/class/rfkill/rfkill0/state
-	chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-	chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chown bluetooth bluetooth /dev/ttyO1
+    chmod 0600 /dev/ttyO1
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
 
 # for samsung factory.
     chown radio radio /efs/bluetooth
@@ -126,7 +133,7 @@ on post-fs-data
     chown system input /sys/class/input/input4/threshold
     chown system input /sys/class/input/input4/distortion
     chown system input /sys/class/input/input4/shape
-	write /sys/class/input/input4/distortion "500 350 15"
+    write /sys/class/input/input4/distortion "500 350 15"
 
     chown system input /sys/class/input/input5/enable
     chown system input /sys/class/input/input5/delay
@@ -142,7 +149,7 @@ on post-fs-data
     chown system input /sys/class/input/input5/threshold
     chown system input /sys/class/input/input5/distortion
     chown system input /sys/class/input/input5/shape
-	write /sys/class/input/input5/distortion "500 350 15"
+    write /sys/class/input/input5/distortion "500 350 15"
 
     chown system input /sys/class/input/input6/enable
     chown system input /sys/class/input/input6/delay
@@ -158,7 +165,7 @@ on post-fs-data
     chown system input /sys/class/input/input6/threshold
     chown system input /sys/class/input/input6/distortion
     chown system input /sys/class/input/input6/shape
-	write /sys/class/input/input6/distortion "500 350 15"
+    write /sys/class/input/input6/distortion "500 350 15"
 
     chown system input /sys/class/input/input7/enable
     chown system input /sys/class/input/input7/delay
@@ -223,36 +230,50 @@ on post-fs-data
     chown system system /sys/class/sec/sec_ir/check_ir
 
 # Battery
-	chown system radio /sys/class/power_supply/battery/batt_reset_soc
+    chown system radio /sys/class/power_supply/battery/batt_reset_soc
     chmod 0664 /sys/class/power_supply/battery/batt_reset_soc
 
 # for wifi
-	mkdir /efs/wifi 0775 system radio
+    mkdir /efs/wifi 0775 system radio
 
 # for hdcp, amwbr
-	mkdir /data/misc/radio 0775 radio system
+    mkdir /data/misc/radio 0775 radio system
 
 # for hdmi factory test
-	chown radio system /sys/devices/platform/omapdss/display1/sec_timing
+    chown radio system /sys/devices/platform/omapdss/display1/sec_timing
 
     setprop vold.post_fs_data_done 1
 
 on boot
 
-service pvrsrvinit /vendor/bin/pvrsrvinit
+service pvrsrvctl /vendor/bin/pvrsrvctl --start --no-module
 	class core
 	user root
 	group root
 	oneshot
 
+service tf_daemon /system/bin/tf_daemon \
+    -d -c /vendor/etc/smc_normal_world_android_cfg.ini
+    class core
+    user drmrpc
+    group drmrpc
+
+service smc_pa_wvdrm /system/bin/smc_pa_ctrl \
+    -c /vendor/etc/smc_normal_world_android_cfg.ini \
+    start /vendor/firmware/smc_pa_wvdrm.ift
+    class core
+    user drmrpc
+    group drmrpc
+    neshot
+
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --no2bytes --enable_lpm \
-	--tosleep 50000 --baudrate 3000000 --use_baudrate_for_download \
-	--patchram /vendor/firmware/BCM4330.hcd /dev/ttyO1
-	class main
-	user bluetooth
-	group bluetooth net_bt_admin
-	disabled
-	oneshot
+    --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download \
+    --patchram /vendor/firmware/BCM4330.hcd /dev/ttyO1
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
 
 service orientationd /system/bin/orientationd
     class main
@@ -264,53 +285,63 @@ service geomagneticd /system/bin/geomagneticd
     user compass
     group system input
 
-# create virtual SD card at /mnt/sdcard, based on the /data/media directory
+# create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
 # underlying files in /data/media will be created with user and group media_rw (1023)
 service sdcard /system/bin/sdcard /data/media 1023 1023
-	class late_start
+    class main
+
+service p2p_supplicant /system/bin/wpa_supplicant \
+    -Dnl80211 -iwlan0 -puse_p2p_group_interface=1 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin 
+    # we will start as root and wpa_supplicant will switch to user wifi
+    # after setting up the capabilities required for WEXT
+    # user wifi
+    # group wifi inet keystore
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service wpa_supplicant /system/bin/wpa_supplicant \
-	-Dnl80211 -iwlan0 -puse_p2p_group_interface=1 -e/data/misc/wifi/entropy.bin
-	#   we will start as root and wpa_supplicant will switch to user wifi
-	#   after setting up the capabilities required for WEXT
-	#   user wifi
-	#   group wifi inet keystore
-	class main
-	socket wpa_wlan0 dgram 660 wifi wifi
-	disabled
-	oneshot
+    -Dnl80211 -iwlan0 -puse_p2p_group_interface=1 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
+    #   we will start as root and wpa_supplicant will switch to user wifi
+    #   after setting up the capabilities required for WEXT
+    #   user wifi
+    #   group wifi inet keystore
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
 
 service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service dhcpcd_p2p /system/bin/dhcpcd -aABKL
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
-	class main
-	disabled
-	oneshot
-
+    class main
+    disabled
+    oneshot
 
 service iprenew_wlan0 /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service iprenew_p2p /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 service iprenew_bnep0 /system/bin/dhcpcd -n
-	class main
-	disabled
-	oneshot
+    class main
+    disabled
+    oneshot
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -318,21 +349,6 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     socket gps seqpacket 0660 gps system
     user gps
     group system inet sdcard_rw
-
-# SMC Service
-service tf_daemon /system/bin/tf_daemon \
-    -d -c /system/bin/smc.ini
-    class main
-    user system
-    group drmrpc
-
-service smc_pa /system/bin/smc_pa_ctrl \
-    -c /system/bin/smc.ini \
-    start /system/bin/smc_pa.ift
-    class main
-    user drmrpc
-    group drmrpc
-    oneshot
 
 # LPM
 on property:ro.bootmode=charger
