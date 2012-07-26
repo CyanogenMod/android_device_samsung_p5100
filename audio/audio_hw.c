@@ -1407,7 +1407,7 @@ static uint32_t in_get_channels(const struct audio_stream *stream)
 {
     struct espresso_stream_in *in = (struct espresso_stream_in *)stream;
 
-    return in->main_channels;
+    return AUDIO_CHANNEL_IN_STEREO;
 }
 
 static audio_format_t in_get_format(const struct audio_stream *stream)
@@ -2569,6 +2569,13 @@ static int adev_open_input_stream(struct audio_hw_device *dev,
     struct espresso_audio_device *ladev = (struct espresso_audio_device *)dev;
     struct espresso_stream_in *in;
     int ret;
+
+    /* Respond with a request for stereo if a different format is given. */
+    if (config->channel_mask != AUDIO_CHANNEL_IN_STEREO) {
+        config->channel_mask = AUDIO_CHANNEL_IN_STEREO;
+        return -EINVAL;
+    }
+
     int channel_count = popcount(config->channel_mask);
 
     *stream_in = NULL;
