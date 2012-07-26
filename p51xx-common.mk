@@ -83,11 +83,12 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.piranha \
     audio.usb.default \
+    hwcomposer.omap4 \
 	lights.piranha \
 	libtinyalsa \
 	libaudioutils \
 	libinvensense_mpl \
-	hwcomposer.omap4 \
+	power.piranha \
 	smc_pa_ctrl \
 	tf_daemon \
 	tinymix
