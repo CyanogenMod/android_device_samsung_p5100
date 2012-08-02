@@ -438,7 +438,7 @@ static void set_incall_device(struct espresso_audio_device *adev)
             }
             break;
         default:
-            device_type = SOUND_AUDIO_PATH_HANDSET;
+            device_type = SOUND_AUDIO_PATH_SPEAKER;
             break;
     }
 
@@ -592,15 +592,23 @@ static void select_output_device(struct espresso_audio_device *adev)
         }
 
         if (headset_on || headphone_on || speaker_on || earpiece_on) {
-            ALOGD("%s: set bigroute: voicecall_input_default", __func__);
+            ALOGD("%s: set voicecall: voicecall_default", __func__);
             set_bigroute_by_array(adev->mixer, voicecall_default, 1);
         } else {
-            ALOGD("%s: set bigroute: voicecall_input_default_disable", __func__);
+            ALOGD("%s: set voicecall: voicecall_default_disable", __func__);
             set_bigroute_by_array(adev->mixer, voicecall_default_disable, 1);
         }
 
+        if (speaker_on || earpiece_on || headphone_on) {
+            ALOGD("%s: set voicecall route: default_input", __func__);
+            set_bigroute_by_array(adev->mixer, default_input, 1);
+        } else {
+            ALOGD("%s: set voicecall route: default_input_disable", __func__);
+            set_bigroute_by_array(adev->mixer, default_input_disable, 1);
+        }
+
         if (headset_on || headphone_on) {
-            ALOGD("%s: set bigroute: headset_input", __func__);
+            ALOGD("%s: set voicecall: headset_input", __func__);
             set_bigroute_by_array(adev->mixer, headset_input, 1);
         }
 
@@ -608,9 +616,9 @@ static void select_output_device(struct espresso_audio_device *adev)
             // bt uses a different port (PORT_BT) for playback, reopen the pcms
             end_call(adev);
             start_call(adev);
-            ALOGD("%s: set bigroute: bt_input", __func__);
+            ALOGD("%s: set voicecall: bt_input", __func__);
             set_bigroute_by_array(adev->mixer, bt_input, 1);
-            ALOGD("%s: set bigroute: bt_output", __func__);
+            ALOGD("%s: set voicecall: bt_output", __func__);
             set_bigroute_by_array(adev->mixer, bt_output, 1);
         }
         set_incall_device(adev);
@@ -623,16 +631,14 @@ static void select_input_device(struct espresso_audio_device *adev)
         case AUDIO_DEVICE_IN_BUILTIN_MIC:
             ALOGD("%s: AUDIO_DEVICE_IN_BUILTIN_MIC", __func__);
             break;
-        case AUDIO_DEVICE_IN_BACK_MIC:
-            ALOGD("%s: AUDIO_DEVICE_IN_BACK_MIC", __func__);
-            break;
-        case AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET:
-            ALOGD("%s: AUDIO_DEVICE_IN_BLUETOOTH_SCO_HEADSET", __func__);
-            break;
         case AUDIO_DEVICE_IN_WIRED_HEADSET:
             ALOGD("%s: AUDIO_DEVICE_IN_WIRED_HEADSET", __func__);
             break;
+        case AUDIO_DEVICE_IN_ALL_SCO:
+            ALOGD("%s: AUDIO_DEVICE_IN_ALL_SCO", __func__);
+            break;
         default:
+            ALOGD("%s: AUDIO_DEVICE_IN_DEFAULT", __func__);
             break;
     }
 

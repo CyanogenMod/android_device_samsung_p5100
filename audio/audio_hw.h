@@ -134,6 +134,22 @@ struct route_setting voicecall_default_disable[] = {
     { .ctl_name = NULL, },
 };
 
+struct route_setting default_input[] = {
+    { .ctl_name = "Main Mic Switch", .intval = 1, },
+    { .ctl_name = "IN1L Volume", .intval = 30, },
+    { .ctl_name = "MIXINL IN1L Volume", .intval = 0, },
+    { .ctl_name = "AIF1ADC1 HPF Mode", .intval = 1, },
+    { .ctl_name = "AIF1ADC1 HPF Switch", .intval = 1, },
+    { .ctl_name = NULL, },
+};
+
+struct route_setting default_input_disable[] = {
+    { .ctl_name = "Main Mic Switch", .intval = 0, },
+    { .ctl_name = "AIF1ADC1 HPF Mode", .intval = 0, },
+    { .ctl_name = "AIF1ADC1 HPF Switch", .intval = 0, },
+    { .ctl_name = NULL, },
+};
+
 struct route_setting headset_input[] = {
     { .ctl_name = "AIF2DAC2L Mixer AIF2 Switch", .intval = 0, },
     { .ctl_name = "AIF2DAC2R Mixer AIF2 Switch", .intval = 0, },
@@ -157,5 +173,7 @@ struct route_setting bt_output[] = {
 };
 
 struct route_setting bt_input[] = {
+    { .ctl_name = "AIF1ADC1R Mixer AIF2 Switch", .intval = 1, },
+    { .ctl_name = "AIF1ADC1L Mixer AIF2 Switch", .intval = 1, },
     { .ctl_name = NULL, },
 };
