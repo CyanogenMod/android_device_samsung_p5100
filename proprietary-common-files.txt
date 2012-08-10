@@ -1,5 +1,6 @@
 system/bin/geomagneticd
 system/bin/gpsd
+system/bin/hostapd
 system/bin/orientationd
 system/etc/wifi/bcmdhd_apsta.bin
 system/etc/wifi/bcmdhd_mfg.bin
@@ -27,7 +28,7 @@ system/lib/libsec-ril.so
 system/lib/libsecnativefeature.so
 system/lib/libsecril-client.so
 system/lib/libtiutils.so
-system/vendor/bin/pvrsrvinit
+system/vendor/bin/pvrsrvctl
 system/vendor/firmware/BCM4330.hcd
 system/vendor/firmware/ducati-m3.bin
 system/vendor/lib/egl/libEGL_POWERVR_SGX540_120.so
