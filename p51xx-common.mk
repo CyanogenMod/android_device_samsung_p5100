@@ -23,9 +23,9 @@ $(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 LOCAL_PATH := device/samsung/p5100
 
-# This device is hdpi.
-PRODUCT_AAPT_CONFIG := normal hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
+# This device is mdpi.
+PRODUCT_AAPT_CONFIG := xlarge mdpi
+PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += hdpi
 
 # Init files
