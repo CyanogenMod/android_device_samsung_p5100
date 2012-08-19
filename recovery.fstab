@@ -11,5 +11,5 @@
 /modem      emmc        /dev/block/mmcblk0p8
 /preload    ext4        /dev/block/mmcblk0p11
 
-/emmc       datamedia   /dev/null
-/sdcard     vfat        /dev/block/mmcblk1p1
+/sdcard			datamedia   /dev/null
+/external_sd	vfat		/dev/block/mmcblk1p1
