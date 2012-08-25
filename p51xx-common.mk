@@ -26,7 +26,7 @@ LOCAL_PATH := device/samsung/p5100
 # This device is mdpi.
 PRODUCT_AAPT_CONFIG := xlarge mdpi
 PRODUCT_AAPT_PREF_CONFIG := mdpi
-PRODUCT_LOCALES += hdpi
+PRODUCT_LOCALES += mdpi
 
 # Init files
 PRODUCT_COPY_FILES := \
