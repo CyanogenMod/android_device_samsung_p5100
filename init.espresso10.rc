@@ -350,6 +350,12 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     user gps
     group system inet sdcard_rw
 
+# Keyboard
+service dock_kbd_attach /system/bin/dock_kbd_attach /dev/ttyO3
+	class main
+	user root
+	oneshot
+
 # LPM
 on property:ro.bootmode=charger
     mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system wait ro
