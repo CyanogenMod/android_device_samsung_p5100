@@ -151,15 +151,20 @@ struct route_setting default_input_disable[] = {
 };
 
 struct route_setting headset_input[] = {
-    { .ctl_name = "AIF2DAC2L Mixer AIF2 Switch", .intval = 0, },
-    { .ctl_name = "AIF2DAC2R Mixer AIF2 Switch", .intval = 0, },
-    { .ctl_name = "Headphone ZC Switch", .intval = 0, },
-    { .ctl_name = "AIF1DAC1 Volume", .intval = 60, },
-    { .ctl_name = "AIF2DAC Volume", .intval = 96, },
-    { .ctl_name = "AIF1 Boost Volume", .intval = 0, },
-    { .ctl_name = "AIF2 Boost Volume", .intval = 0, },
-    { .ctl_name = "DAC1 Volume", .intval = 96, },
-    { .ctl_name = "Headphone Volume", .intval = 54, },
+    { .ctl_name = "Headset Mic Switch", .intval = 1, },
+    { .ctl_name = "IN1R Volume", .intval = 9, },
+    { .ctl_name = "MIXINL IN1L Switch", .intval = 0, },
+    { .ctl_name = "MIXINL IN1L Volume", .intval = 1, },
+    { .ctl_name = "MIXINR IN1R Switch", .intval = 1, },
+    { .ctl_name = "MIXINR IN1R Volume", .intval = 1, },
+    { .ctl_name = "MIXINR IN1RP Volume", .intval = 1, },
+    { .ctl_name = "DAC2 Right Sidetone Volume", .intval = 12, },
+    { .ctl_name = "DAC2 Volume", .intval = 96, },
+    { .ctl_name = "AIF2ADC Volume", .intval = 96, },
+    { .ctl_name = "AIF1ADCL Source", .intval = 1, },
+    { .ctl_name = "AIF1ADCR Source", .intval = 1, },
+    { .ctl_name = "AIF2ADCL Source", .intval = 1, },
+    { .ctl_name = "AIF2ADCR Source", .intval = 1, },
     { .ctl_name = NULL, },
 };
 
