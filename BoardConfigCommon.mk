@@ -18,6 +18,7 @@
 # by BoardConfigVendor.mk
 USE_CAMERA_STUB := true
 
+TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
