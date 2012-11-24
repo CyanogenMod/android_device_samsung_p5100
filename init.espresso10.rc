@@ -35,11 +35,8 @@ loglevel 7
 
 on fs
     mkdir /efs
-    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system wait rw   
-    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/FACTORYFS /system ro remount
-    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/DATAFS /data wait noatime nosuid nodev crypt discard,noauto_da_alloc
-    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/CACHE /cache wait noatime nosuid nodev nomblk_io_submit,errors=panic
-    mount ext4 /dev/block/platform/omap/omap_hsmmc.1/by-name/EFS /efs wait rw
+    mount_all fstab.espresso10
+
     chown radio system /efs
     chmod 0775 /efs
 

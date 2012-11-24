@@ -32,7 +32,8 @@ PRODUCT_LOCALES += mdpi
 PRODUCT_COPY_FILES := \
     $(LOCAL_PATH)/init.espresso10.usb.rc:root/init.espresso10.usb.rc \
     $(LOCAL_PATH)/init.espresso10.rc:root/init.espresso10.rc \
-    $(LOCAL_PATH)/ueventd.espresso10.rc:root/ueventd.espresso10.rc
+    $(LOCAL_PATH)/ueventd.espresso10.rc:root/ueventd.espresso10.rc \
+    $(LOCAL_PATH)/fstab.espresso10:root/fstab.espresso10
 
 # Vold
 PRODUCT_COPY_FILES += \
