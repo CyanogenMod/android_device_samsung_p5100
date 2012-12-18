@@ -88,6 +88,7 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.piranha \
     audio.usb.default \
+    camera.piranha \
     hwcomposer.omap4 \
     lights.piranha \
     libtinyalsa \
