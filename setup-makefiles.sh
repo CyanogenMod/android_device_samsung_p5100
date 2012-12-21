@@ -80,7 +80,7 @@ for FILE in `cat proprietary-$DEVICE-files.txt | grep -v ^# | grep -v ^$`; do
     if [ $COUNT = "0" ]; then
         LINEEND=""
     fi
-    echo "    $OUTDIR/common/$FILE:$FILE$LINEEND" >> $DEVICEMAKEFILE
+    echo "    $OUTDIR/$DEVICE/$FILE:$FILE$LINEEND" >> $DEVICEMAKEFILE
 done
 
 (cat << EOF) | sed s/__COMMON__/$COMMON/g | sed s/__DEVICE__/$DEVICE/g | sed s/__VENDOR__/$VENDOR/g > ../../../vendor/$VENDOR/$COMMON/$DEVICE-vendor.mk
