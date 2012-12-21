@@ -91,17 +91,14 @@ static int check_vendor_module()
     return rv;
 }
 
-const static char * exposure_values[] = {"0","0"};
-
 static char * camera_fixup_getparams(int id, const char * settings)
 {
     android::CameraParameters params;
     params.unflatten(android::String8(settings));
 
     // fix params here
-    params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION, exposure_values[id]);
-    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "0");
-    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "0");
+    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-3");
+    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "3");
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
