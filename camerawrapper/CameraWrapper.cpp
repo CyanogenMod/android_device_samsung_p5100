@@ -97,8 +97,8 @@ static char * camera_fixup_getparams(int id, const char * settings)
     params.unflatten(android::String8(settings));
 
     // fix params here
-    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-3");
-    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "3");
+    //params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-3");
+    //params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "3");
 
     android::String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
@@ -382,10 +382,7 @@ int camera_send_command(struct camera_device * device,
     if(!device)
         return -EINVAL;
 
-    /* send_command causes the camera hal do to unexpected things like lockups.
-     * don't pass any command to the vendor hal to prevent this */
-    return 0;
-    //return VENDOR_CALL(device, send_command, cmd, arg1, arg2);
+    return VENDOR_CALL(device, send_command, cmd, arg1, arg2);
 }
 
 void camera_release(struct camera_device * device)
