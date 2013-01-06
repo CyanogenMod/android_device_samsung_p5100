@@ -94,6 +94,7 @@ PRODUCT_PACKAGES += \
     libtinyalsa \
     libaudioutils \
     libinvensense_mpl \
+    libnetcmdiface \
     power.piranha \
     smc_pa_ctrl \
     tf_daemon \

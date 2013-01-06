@@ -249,10 +249,10 @@ on post-fs-data
 on boot
 
 service pvrsrvctl /vendor/bin/pvrsrvctl --start --no-module
-	class core
-	user root
-	group root
-	oneshot
+    class core
+    user root
+    group root
+    oneshot
 
 service tf_daemon /system/bin/tf_daemon \
     -d -c /vendor/etc/smc_normal_world_android_cfg.ini
