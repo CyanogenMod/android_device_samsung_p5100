@@ -178,7 +178,17 @@ struct route_setting bt_output[] = {
 };
 
 struct route_setting bt_input[] = {
-    { .ctl_name = "AIF1ADC1R Mixer AIF2 Switch", .intval = 1, },
-    { .ctl_name = "AIF1ADC1L Mixer AIF2 Switch", .intval = 1, },
+    { .ctl_name = "AIF2ADC Mux", .intval = 1, },
+    { .ctl_name = "AIF2DACR Source", .intval = 1, },
+    { .ctl_name = "HP Switch", .intval = 0, },
+    { .ctl_name = "DAC1L Mixer AIF2 Switch", .intval = 1, },
+    { .ctl_name = "DAC1R Mixer AIF2 Switch", .intval = 1, },
+    { .ctl_name = "AIF1ADC1R Mixer AIF2 Switch", .intval = 0, },
+    { .ctl_name = "AIF1ADC1L Mixer AIF2 Switch", .intval = 0, },
+    { .ctl_name = "AIF2DAC2R Mixer Right Sidetone Switch", .intval = 0, },
+    { .ctl_name = "AIF2DAC2R Mixer Left Sidetone Switch", .intval = 1, },
+    { .ctl_name = "AIF1ADC1R Mixer AIF2 Switch", .intval = 0, },
+    { .ctl_name = "AIF1ADC1L Mixer AIF2 Switch", .intval = 0, },
+    { .ctl_name = "MIXINL IN1L Switch", .intval = 0, },
     { .ctl_name = NULL, },
 };
