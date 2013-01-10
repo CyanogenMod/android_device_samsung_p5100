@@ -266,7 +266,7 @@ service smc_pa_wvdrm /system/bin/smc_pa_ctrl \
     class core
     user drmrpc
     group drmrpc
-    neshot
+    oneshot
 
 service orientationd /system/bin/orientationd
     class main
