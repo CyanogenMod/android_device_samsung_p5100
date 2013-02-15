@@ -16,6 +16,9 @@
 
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
+
+-include device/samsung/omap4-common/BoardConfigCommon.mk
+
 USE_CAMERA_STUB := true
 
 TARGET_ARCH := arm
@@ -31,6 +34,7 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 TARGET_BOARD_PLATFORM := omap4
+TARGET_BOARD_OMAP_CPU := 4430
 TARGET_BOOTLOADER_BOARD_NAME := piranha
 
 BOARD_NAND_PAGE_SIZE := 4096
@@ -53,14 +57,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Egl
 BOARD_EGL_CFG := device/samsung/p5100/configs/egl.cfg
 USE_OPENGL_RENDERER := true
-COMMON_GLOBAL_CFLAGS += -DSURFACEFLINGER_FORCE_SCREEN_RELEASE
 TARGET_BOOTANIMATION_PRELOAD := true
-
-# HWComposer
-BOARD_USES_HWCOMPOSER := true
-BOARD_USE_SYSFS_VSYNC_NOTIFICATION := true
-# set if the target supports FBIO_WAITFORVSYNC
-TARGET_HAS_WAITFORVSYNC := true
 
 # Camera
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
@@ -85,9 +82,10 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/wifi/bcmdhd_p2p.bin"
 WIFI_DRIVER_MODULE_NAME          := "dhd"
-WIFI_DRIVER_MODULE_ARG           := "iface_name=wlan0 firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
+WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
-BOARD_LEGACY_NL80211_STA_EVENTS  := true
+BOARD_HAVE_SAMSUNG_WIFI          := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -99,7 +97,7 @@ BOARD_BLUEDROID_VENDOR_CONF := device/samsung/p5100/bluetooth/vnd_espresso10.txt
 BOARD_USES_SECURE_SERVICES := true
 
 # Recovery
-TARGET_RECOVERY_INITRC := device/samsung/p5100/recovery.rc
+TARGET_RECOVERY_INITRC := device/samsung/p5100/rootdir/recovery.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
@@ -108,8 +106,6 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Charging mode
 BOARD_CHARGER_RES := device/samsung/p5100/res/charger
-
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/p5100/overlay/include
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk

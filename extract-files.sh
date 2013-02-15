@@ -41,3 +41,5 @@ for FILE in `cat proprietary-$DEVICE-files.txt | grep -v ^# | grep -v ^$`; do
 done
 
 ./setup-makefiles.sh
+
+./../../../device/samsung/omap4-common/extract-files.sh

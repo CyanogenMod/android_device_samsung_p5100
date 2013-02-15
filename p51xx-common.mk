@@ -14,6 +14,9 @@
 # limitations under the License.
 #
 
+# Include omap4 common makefile
+$(call inherit-product, device/samsung/omap4-common/common.mk)
+
 DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/common-overlay
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
@@ -29,11 +32,11 @@ PRODUCT_AAPT_PREF_CONFIG := mdpi
 PRODUCT_LOCALES += mdpi
 
 # Init files
-PRODUCT_COPY_FILES := \
-    $(LOCAL_PATH)/init.espresso10.usb.rc:root/init.espresso10.usb.rc \
-    $(LOCAL_PATH)/init.espresso10.rc:root/init.espresso10.rc \
-    $(LOCAL_PATH)/ueventd.espresso10.rc:root/ueventd.espresso10.rc \
-    $(LOCAL_PATH)/fstab.espresso10:root/fstab.espresso10
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.espresso10.usb.rc:root/init.espresso10.usb.rc \
+    $(LOCAL_PATH)/rootdir/init.espresso10.rc:root/init.espresso10.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.espresso10.rc:root/ueventd.espresso10.rc \
+    $(LOCAL_PATH)/rootdir/fstab.espresso10:root/fstab.espresso10
 
 # Vold
 PRODUCT_COPY_FILES += \
@@ -64,47 +67,17 @@ PRODUCT_COPY_FILES += \
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/keychars/espresso-gpio-keypad.kcm:system/usr/keychars/espresso-gpio-keypad.kcm \
-    $(LOCAL_PATH)/usr/keychars/Generic.kcm:system/usr/keychars/Generic.kcm \
-    $(LOCAL_PATH)/usr/keychars/qwerty.kcm:system/usr/keychars/qwerty.kcm \
-    $(LOCAL_PATH)/usr/keychars/qwerty2.kcm:system/usr/keychars/qwerty2.kcm \
-    $(LOCAL_PATH)/usr/keychars/Virtual.kcm:system/usr/keychars/Virtual.kcm \
-    $(LOCAL_PATH)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(LOCAL_PATH)/usr/keylayout/espresso-gpio-keypad.kl:system/usr/keylayout/espresso-gpio-keypad.kl \
-    $(LOCAL_PATH)/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
-    $(LOCAL_PATH)/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
-    $(LOCAL_PATH)/usr/keylayout/sec_keyboard.kl:system/usr/keylayout/sec_keyboard.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_04e8_Product_7021.kl:system/usr/keylayout/Vendor_04e8_Product_7021.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_05ac_Product_0239.kl:system/usr/keylayout/Vendor_05ac_Product_0239.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_22b8_Product_093d.kl:system/usr/keylayout/Vendor_22b8_Product_093d.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_028e.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_046d_Product_c216.kl:system/usr/keylayout/Vendor_046d_Product_c216.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_046d_Product_c294.kl:system/usr/keylayout/Vendor_046d_Product_c294.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_046d_Product_c299.kl:system/usr/keylayout/Vendor_046d_Product_c299.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_046d_Product_c532.kl:system/usr/keylayout/Vendor_046d_Product_c532.kl \
-    $(LOCAL_PATH)/usr/keylayout/Vendor_054c_Product_0268.kl:system/usr/keylayout/Vendor_054c_Product_0268.kl
+    $(LOCAL_PATH)/usr/keylayout/sec_keyboard.kl:system/usr/keylayout/sec_keyboard.kl
 
 # Packages
 PRODUCT_PACKAGES += \
-    audio.a2dp.default \
     audio.primary.piranha \
-    audio.usb.default \
     camera.piranha \
-    hwcomposer.omap4 \
+    hwcomposer.piranha \
     lights.piranha \
-    libtinyalsa \
-    libaudioutils \
     libinvensense_mpl \
-    libnetcmdiface \
-    power.piranha \
-    smc_pa_ctrl \
-    tf_daemon \
-    tinymix
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    static_busybox \
-    make_ext4fs \
-    setup_fs
+    power.piranha
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -145,13 +118,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072
 
-# Set default USB interface
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
-
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 $(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
-$(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
 $(call inherit-product-if-exists, vendor/samsung/p51xx/p51xx-vendor.mk)
