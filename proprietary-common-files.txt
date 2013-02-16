@@ -2,6 +2,8 @@ system/bin/dock_kbd_attach
 system/bin/geomagneticd
 system/bin/gpsd
 system/bin/orientationd
+system/bin/smc.ini
+system/bin/smc_pa.ift
 system/etc/wifi/bcmdhd_apsta.bin
 system/etc/wifi/bcmdhd_mfg.bin
 system/etc/wifi/bcmdhd_p2p.bin
