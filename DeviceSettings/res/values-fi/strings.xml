@@ -15,10 +15,10 @@
  -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Galaxy Tab 2 Settings</string>
+    <string name="app_name">Galaxy Tab 2-asetukset</string>
 
-    <string name="category_dock_title">Dock</string>
-    <string name="dockaudio_subcat_title">Dock Audio</string>
-    <string name="use_dock_audio_title_head">Use Dock USB Audio</string>
-    <string name="use_dock_audio_summary_head">Use the passive audio out on the dock</string>
+    <string name="category_dock_title">Telakka</string>
+    <string name="dockaudio_subcat_title">Audio</string>
+    <string name="use_dock_audio_title_head">Käytä USB-audiotelakkaa</string>
+    <string name="use_dock_audio_summary_head">Käytä telakan audioulostuloa</string>
 </resources>
