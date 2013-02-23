@@ -492,6 +492,7 @@ static void set_incall_device(struct espresso_audio_device *adev)
             device_type = SOUND_AUDIO_PATH_HANDSET;
             break;
         case AUDIO_DEVICE_OUT_SPEAKER:
+        case AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET:
         case AUDIO_DEVICE_OUT_AUX_DIGITAL:
         case AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET:
             device_type = SOUND_AUDIO_PATH_SPEAKER;
@@ -628,8 +629,17 @@ static void select_output_device(struct espresso_audio_device *adev)
         case AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET:
             ALOGD("%s: AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET", __func__);
             break;
+        case AUDIO_DEVICE_OUT_AUX_DIGITAL:
+            ALOGD("%s: AUDIO_DEVICE_OUT_AUX_DIGITAL", __func__);
+            break;
         case AUDIO_DEVICE_OUT_ALL_SCO:
             ALOGD("%s: AUDIO_DEVICE_OUT_ALL_SCO", __func__);
+            break;
+        case AUDIO_DEVICE_OUT_USB_ACCESSORY:
+            ALOGD("%s: AUDIO_DEVICE_OUT_USB_ACCESSORY", __func__);
+            break;
+        case AUDIO_DEVICE_OUT_USB_DEVICE:
+            ALOGD("%s: AUDIO_DEVICE_OUT_USB_DEVICE", __func__);
             break;
         default:
             ALOGD("%s: AUDIO_DEVICE_OUT_ALL", __func__);
@@ -2424,18 +2434,23 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     struct espresso_stream_out *out;
     int ret;
     int output_type;
+
     *stream_out = NULL;
 
     out = (struct espresso_stream_out *)calloc(1, sizeof(struct espresso_stream_out));
-    if (!out)
+    if (!out) {
+        ALOGE("%s: -ENOMEM", __func__);
         return -ENOMEM;
+    }
 
     out->sup_channel_masks[0] = AUDIO_CHANNEL_OUT_STEREO;
     out->channel_mask = AUDIO_CHANNEL_OUT_STEREO;
 
+    /* FIXME */
     if (ladev->outputs[OUTPUT_DEEP_BUF] != NULL) {
-        ret = -ENOSYS;
-        goto err_open;
+        //ret = -ENOSYS;
+        ALOGE("%s: -ENOSYS", __func__);
+        //goto err_open;
     }
     output_type = OUTPUT_DEEP_BUF;
     out->channel_mask = AUDIO_CHANNEL_OUT_STEREO;
@@ -2450,8 +2465,10 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
                            RESAMPLER_QUALITY_DEFAULT,
                            NULL,
                            &out->resampler);
-    if (ret != 0)
+    if (ret != 0) {
+        ALOGE("%s: error on resampler create!", __func__);
         goto err_open;
+    }
 
     out->stream.common.set_sample_rate = out_set_sample_rate;
     out->stream.common.get_channels = out_get_channels;
@@ -2486,6 +2503,7 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     return 0;
 
 err_open:
+    ALOGE("%s: err_open", __func__);
     free(out);
     return ret;
 }
@@ -2781,6 +2799,7 @@ static const struct {
     { AUDIO_DEVICE_OUT_WIRED_HEADSET | AUDIO_DEVICE_OUT_WIRED_HEADPHONE, "headphone" },
     { AUDIO_DEVICE_OUT_EARPIECE, "earpiece" },
     { AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET, "analog-dock" },
+    { AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET, "analog-dock" },
     { AUDIO_DEVICE_OUT_ALL_SCO, "sco-out" },
 
     { AUDIO_DEVICE_IN_BUILTIN_MIC, "builtin-mic" },
