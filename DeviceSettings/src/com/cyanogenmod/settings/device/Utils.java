@@ -35,7 +35,7 @@ public class Utils {
 
     /**
      * Write a string value to the specified file.
-     * 
+     *
      * @param filename The filename
      * @param value The value
      */
@@ -71,7 +71,7 @@ public class Utils {
 
     /**
      * Write a string value to the specified file.
-     * 
+     *
      * @param filename The filename
      * @param value The value
      */

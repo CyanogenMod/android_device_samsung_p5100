@@ -15,10 +15,10 @@
  -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Galaxy Tab 2 Settings</string>
+    <string name="app_name">Galaxy Tab 2 设置</string>
 
-    <string name="category_dock_title">Dock</string>
-    <string name="dockaudio_subcat_title">Dock Audio</string>
-    <string name="use_dock_audio_title_head">Use Dock USB Audio</string>
-    <string name="use_dock_audio_summary_head">Use the passive audio out on the dock</string>
+    <string name="category_dock_title">基座</string>
+    <string name="dockaudio_subcat_title">基座音频</string>
+    <string name="use_dock_audio_title_head">使用基座的 USB 音频</string>
+    <string name="use_dock_audio_summary_head">使用基座上的被动音频输出</string>
 </resources>
