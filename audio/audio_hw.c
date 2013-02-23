@@ -314,6 +314,8 @@ void select_devices(struct espresso_audio_device *adev)
 {
     int i;
 
+    ALOGE("%s: entered", __func__);
+
     if (adev->active_out_device == adev->out_device && adev->active_in_device == adev->in_device)
     return;
 
@@ -492,6 +494,7 @@ static void set_incall_device(struct espresso_audio_device *adev)
             device_type = SOUND_AUDIO_PATH_HANDSET;
             break;
         case AUDIO_DEVICE_OUT_SPEAKER:
+        case AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET:
         case AUDIO_DEVICE_OUT_AUX_DIGITAL:
         case AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET:
             device_type = SOUND_AUDIO_PATH_SPEAKER;
@@ -600,14 +603,20 @@ static void select_output_device(struct espresso_audio_device *adev)
     int speaker_on;
     int earpiece_on;
     int bt_on;
+    int adock_on;
     bool tty_volume = false;
     unsigned int channel;
+
+    ALOGE("%s: entered", __func__);
 
     headset_on = adev->out_device & AUDIO_DEVICE_OUT_WIRED_HEADSET;
     headphone_on = adev->out_device & AUDIO_DEVICE_OUT_WIRED_HEADPHONE;
     speaker_on = adev->out_device & AUDIO_DEVICE_OUT_SPEAKER;
     earpiece_on = adev->out_device & AUDIO_DEVICE_OUT_EARPIECE;
     bt_on = adev->out_device & AUDIO_DEVICE_OUT_ALL_SCO;
+    adock_on = adev->out_device & AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET;
+
+    ALOGE("%s: device = %x", __func__, adev->out_device);
 
     switch(adev->out_device) {
         case AUDIO_DEVICE_OUT_SPEAKER:
@@ -628,8 +637,17 @@ static void select_output_device(struct espresso_audio_device *adev)
         case AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET:
             ALOGD("%s: AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET", __func__);
             break;
+        case AUDIO_DEVICE_OUT_AUX_DIGITAL:
+            ALOGD("%s: AUDIO_DEVICE_OUT_AUX_DIGITAL", __func__);
+            break;
         case AUDIO_DEVICE_OUT_ALL_SCO:
             ALOGD("%s: AUDIO_DEVICE_OUT_ALL_SCO", __func__);
+            break;
+        case AUDIO_DEVICE_OUT_USB_ACCESSORY:
+            ALOGD("%s: AUDIO_DEVICE_OUT_USB_ACCESSORY", __func__);
+            break;
+        case AUDIO_DEVICE_OUT_USB_DEVICE:
+            ALOGD("%s: AUDIO_DEVICE_OUT_USB_DEVICE", __func__);
             break;
         default:
             ALOGD("%s: AUDIO_DEVICE_OUT_ALL", __func__);
@@ -726,6 +744,8 @@ static int start_output_stream_low_latency(struct espresso_stream_out *out)
     unsigned int flags = PCM_OUT;
     int i;
     bool success = true;
+
+    ALOGE("%s: entered", __func__);
 
     if (adev->mode != AUDIO_MODE_IN_CALL) {
         select_output_device(adev);
@@ -1072,6 +1092,8 @@ static int out_set_parameters(struct audio_stream *stream, const char *kvpairs)
     int ret, val = 0;
     bool force_input_standby = false;
 
+    ALOGE("%s: entered", __func__);
+
     parms = str_parms_create_str(kvpairs);
 
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_STREAM_ROUTING, value, sizeof(value));
@@ -1146,6 +1168,8 @@ static char * out_get_parameters(const struct audio_stream *stream, const char *
     int ret;
     bool first = true;
 
+    ALOGE("%s: entered", __func__);
+
     ret = str_parms_get_str(query, AUDIO_PARAMETER_STREAM_SUP_CHANNELS, value, sizeof(value));
     if (ret >= 0) {
         value[0] = '\0';
@@ -1208,6 +1232,8 @@ static ssize_t out_write_low_latency(struct audio_stream_out *stream, const void
     bool force_input_standby = false;
     struct espresso_stream_in *in;
     int i;
+
+    ALOGE("%s: entered", __func__);
 
     /* acquiring hw device mutex systematically is useful if a low priority thread is waiting
      * on the output stream mutex - e.g. executing select_mode() while holding the hw device
@@ -2426,16 +2452,22 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     int output_type;
     *stream_out = NULL;
 
+    ALOGE("%s: entered", __func__);
+
     out = (struct espresso_stream_out *)calloc(1, sizeof(struct espresso_stream_out));
-    if (!out)
+    if (!out) {
+        ALOGE("%s: -ENOMEM", __func__);
         return -ENOMEM;
+    }
 
     out->sup_channel_masks[0] = AUDIO_CHANNEL_OUT_STEREO;
     out->channel_mask = AUDIO_CHANNEL_OUT_STEREO;
 
+    /* FIXME */
     if (ladev->outputs[OUTPUT_DEEP_BUF] != NULL) {
-        ret = -ENOSYS;
-        goto err_open;
+        //ret = -ENOSYS;
+        ALOGE("%s: -ENOSYS", __func__);
+        //goto err_open;
     }
     output_type = OUTPUT_DEEP_BUF;
     out->channel_mask = AUDIO_CHANNEL_OUT_STEREO;
@@ -2483,9 +2515,11 @@ static int adev_open_output_stream(struct audio_hw_device *dev,
     *stream_out = &out->stream;
     ladev->outputs[output_type] = out;
 
+    ALOGE("%s: return 0", __func__);
     return 0;
 
 err_open:
+    ALOGE("%s: err_open", __func__);
     free(out);
     return ret;
 }
@@ -2496,6 +2530,8 @@ static void adev_close_output_stream(struct audio_hw_device *dev,
     struct espresso_audio_device *ladev = (struct espresso_audio_device *)dev;
     struct espresso_stream_out *out = (struct espresso_stream_out *)stream;
     int i;
+
+    ALOGE("%s: entered", __func__);
 
     out_standby(&stream->common);
     for (i = 0; i < OUTPUT_TOTAL; i++) {
@@ -2519,6 +2555,8 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
     char *str;
     char value[32];
     int ret;
+
+    ALOGE("%s: entered", __func__);
 
     parms = str_parms_create_str(kvpairs);
     ret = str_parms_get_str(parms, AUDIO_PARAMETER_KEY_TTY_MODE, value, sizeof(value));
@@ -2781,6 +2819,7 @@ static const struct {
     { AUDIO_DEVICE_OUT_WIRED_HEADSET | AUDIO_DEVICE_OUT_WIRED_HEADPHONE, "headphone" },
     { AUDIO_DEVICE_OUT_EARPIECE, "earpiece" },
     { AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET, "analog-dock" },
+    { AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET, "analog-dock" },
     { AUDIO_DEVICE_OUT_ALL_SCO, "sco-out" },
 
     { AUDIO_DEVICE_IN_BUILTIN_MIC, "builtin-mic" },
