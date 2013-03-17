@@ -23,4 +23,6 @@
     <!-- Dock Settings -->
     <bool name="has_dock_settings">true</bool>
 
+    <!-- Volume Rocker Wake -->
+    <bool name="config_show_volumeRockerWake">true</bool>
 </resources>
