@@ -142,6 +142,8 @@ We are able to have most of our routing static so do that
         <ctl name="AIF3ADC Mux" val="0"/>
         <ctl name="AIF2DAC2L Mixer AIF1.1 Switch" val="0"/>
         <ctl name="AIF2DAC2R Mixer AIF1.1 Switch" val="0"/>
+        <ctl name="AIF2ADCL Source" val="Left"/>
+        <ctl name="AIF2ADCR Source" val="Right"/>
     </path>
 </device>
 <device name="dock">
