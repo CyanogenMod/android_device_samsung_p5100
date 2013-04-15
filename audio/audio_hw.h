@@ -150,6 +150,22 @@ struct route_setting default_input_disable[] = {
     { .ctl_name = NULL, },
 };
 
+struct route_setting noise_suppression[] = {
+    { .ctl_name = "Sub Mic Switch", .intval = 1, },
+    { .ctl_name = "AIF1ADCR Source", .intval = 1, },
+    { .ctl_name = "MIXINR IN2R Switch", .intval = 1, },
+    { .ctl_name = "IN2R Volume", .intval = 25, },
+    { .ctl_name = NULL, },
+};
+
+struct route_setting noise_suppression_disable[] = {
+    { .ctl_name = "Sub Mic Switch", .intval = 0, },
+    { .ctl_name = "AIF1ADCR Source", .intval = 0, },
+    { .ctl_name = "MIXINR IN2R Switch", .intval = 0, },
+    { .ctl_name = "IN2R Volume", .intval = 11, },
+    { .ctl_name = NULL, },
+};
+
 struct route_setting headset_input[] = {
     { .ctl_name = "Headset Mic Switch", .intval = 1, },
     { .ctl_name = "IN1R Volume", .intval = 9, },
