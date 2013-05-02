@@ -371,6 +371,12 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     user gps
     group system inet sdcard_rw
 
+# TVout
+service TvoutService_C /system/bin/bintvoutservice
+    class main
+    user system
+    group system
+
 # Keyboard
 service dock_kbd_attach /system/bin/dock_kbd_attach /dev/ttyO3
 	class main

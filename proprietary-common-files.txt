@@ -33,3 +33,7 @@ system/vendor/lib/drm/libdrmwvmplugin.so
 system/vendor/lib/libWVStreamControlAPI_L1.so
 system/vendor/lib/libwvdrm_L1.so
 system/vendor/lib/libwvm.so
+system/bin/bintvoutservice 
+system/lib/libtvoutservice.so
+system/lib/libtvoutinterface.so
+system/lib/libhdcp.so
