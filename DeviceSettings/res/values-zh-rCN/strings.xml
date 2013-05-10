@@ -15,7 +15,7 @@
  -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Galaxy Tab 2 设置</string>
+    <string name="app_name">高级设置</string>
 
     <string name="category_dock_title">基座</string>
     <string name="dockaudio_subcat_title">基座音频</string>
