@@ -19,9 +19,6 @@
 
 TARGET_BOARD_INFO_FILE := device/samsung/p5100/board-info.txt
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/samsung/espresso10
 TARGET_KERNEL_CONFIG := cyanogenmod_p5100_defconfig
