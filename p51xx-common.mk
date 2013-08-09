@@ -70,7 +70,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     audio.primary.piranha \
     camera.piranha \
-    GalaxyTab2Settings \
     hwcomposer.piranha \
     lights.piranha \
     libinvensense_mpl \
