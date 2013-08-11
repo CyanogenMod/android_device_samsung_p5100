@@ -99,7 +99,8 @@ BOARD_SEPOLICY_UNION := \
     device.te \
     domain.te \
     pvrsrvinit.te \
-    rild.te
+    rild.te \
+    wpa_supplicant.te
 
 # Recovery
 TARGET_RECOVERY_INITRC := device/samsung/p5100/rootdir/recovery.rc
