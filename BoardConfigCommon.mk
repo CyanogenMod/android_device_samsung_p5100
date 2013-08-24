@@ -103,7 +103,6 @@ BOARD_SEPOLICY_UNION := \
     wpa_supplicant.te
 
 # Recovery
-TARGET_RECOVERY_INITRC := device/samsung/p5100/rootdir/recovery.rc
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
