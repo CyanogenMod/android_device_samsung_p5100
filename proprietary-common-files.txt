@@ -13,7 +13,6 @@ system/etc/wifi/nvram_mfg.txt
 system/etc/wifi/nvram_net.txt
 system/lib/hw/vendor-camera.piranha.so
 system/lib/hw/gps.omap4.so
-system/lib/hw/sensors.omap4.so
 system/lib/libdomx.so
 system/lib/libhdcp.so
 system/lib/libI420colorconvert.so
