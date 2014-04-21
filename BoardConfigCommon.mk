@@ -114,6 +114,10 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/fstab.espresso10
 RECOVERY_FSTAB_VERSION := 2
 
+# build swipe recovery by default
+BOARD_RECOVERY_SWIPE := true
+BOARD_RECOVERY_SWIPE_SWAPXY := true
+
 # Charging mode
 BOARD_CHARGER_RES := device/samsung/p5100/res/charger
 
