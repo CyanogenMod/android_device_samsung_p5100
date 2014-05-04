@@ -1,0 +1,6 @@
+# add here entries already existing in main device fstab, but for which you want a blk_device2, fs_type2 or fs_options2
+# used to partition sdcard and format it to ext2/ext3
+# used also to stat for size of mtd/yaffs2 partitions
+
+/dev/block/mmcblk1p1		/storage/sdcard1 		auto	defaults		defaults
+/dev/block/sda1			/storage/usbdisk0 		auto	defaults		defaults
