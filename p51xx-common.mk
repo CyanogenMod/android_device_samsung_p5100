@@ -63,6 +63,7 @@ PRODUCT_COPY_FILES += \
 # Packages
 PRODUCT_PACKAGES += \
     audio.primary.piranha \
+    audio.r_submix.default \
     camera.piranha \
     hwcomposer.piranha \
     lights.piranha \
