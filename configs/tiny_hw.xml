@@ -144,7 +144,7 @@ We are able to have most of our routing static so do that
         <ctl name="AIF2DAC2R Mixer AIF1.1 Switch" val="0"/>
     </path>
 </device>
-<device name="analog-dock">
+<device name="dock">
     <path name="on">
         <ctl name="LINEOUT1N Switch" val="1"/>
         <ctl name="LINEOUT1P Switch" val="1"/>
