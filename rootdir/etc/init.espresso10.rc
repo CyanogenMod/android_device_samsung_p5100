@@ -451,6 +451,11 @@ service charger /charger
     class charger
     user root
 
+# stop cpboot-daemon for wifi-only device
+on property:ro.carrier=wifi-only
+    stop cpboot-daemon
+    stop ril-daemon
+
 ## CyanogenMod Performance Profiles
 # Powersave
 on property:sys.perf.profile=0
