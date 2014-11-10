@@ -31,7 +31,7 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE :=
+# BOARD_KERNEL_CMDLINE :=
 
 # Init
 TARGET_PROVIDES_INIT := true
@@ -101,9 +101,14 @@ BOARD_SEPOLICY_UNION += \
     file_contexts \
     file.te \
     device.te \
+    dock_kbd_attach.te \
     domain.te \
+    geomagneticd.te \
+    init.te \
+    orientationd.te \
     pvrsrvinit.te \
     rild.te \
+    smc_pa.te \
     wpa_supplicant.te
 
 # Recovery

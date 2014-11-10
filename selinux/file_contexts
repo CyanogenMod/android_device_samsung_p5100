@@ -16,14 +16,22 @@
 
 # GPS
 /dev/ttyO0                                  u:object_r:gps_device:s0
+/system/bin/gpsd                            u:object_r:gpsd_exec:s0
+
+# Sensors
+/system/bin/geomagneticd                    u:object_r:geomagneticd_exec:s0
+/system/bin/orientationd                    u:object_r:orientationd_exec:s0
 
 # Wifi
 /dev/rfkill                                 u:object_r:rfkill_device:s0
 /efs/wifi/.mac.info                         u:object_r:wifi_data_file:s0
 
 # System binaries
-/system/vendor/bin/pvrsrvinit               u:object_r:pvrsrvinit_exec:s0
+/system/bin/pvrsrvinit                      u:object_r:pvrsrvinit_exec:s0
 /system/vendor/bin/pvrsrvctl_SGX540_120     u:object_r:pvrsrvinit_exec:s0
+
+/system/bin/dock_kbd_attach                 u:object_r:dock_kbd_attach_exec:s0
+/system/bin/smc_pa_ctrl                     u:object_r:smc_pa_exec:s0
 
 # Firmwares
 /system/vendor/firmware/ducati-m3.bin       u:object_r:firmware_ducati:s0

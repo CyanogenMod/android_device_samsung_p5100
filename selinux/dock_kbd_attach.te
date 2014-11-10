@@ -1,0 +1,5 @@
+# dock_kbd_attach
+type dock_kbd_attach, domain;
+type dock_kbd_attach_exec, exec_type, file_type;
+
+init_daemon_domain(dock_kbd_attach)
