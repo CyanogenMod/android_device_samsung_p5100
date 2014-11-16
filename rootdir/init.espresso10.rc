@@ -279,10 +279,11 @@ on post-fs-data
 on boot
 
 # initialize the SGX driver
-service pvrsrvinit /system/vendor/bin/pvrsrvinit
+service pvrsrvinit /system/bin/pvrsrvinit
     class core
     user root
     group root
+    seclabel u:r:pvrsrvinit:s0
     oneshot
 
 service pvrsrvctl /system/vendor/bin/pvrsrvctl_SGX540_120 --start --no-module
