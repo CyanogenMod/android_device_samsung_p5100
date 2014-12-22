@@ -119,8 +119,5 @@ RECOVERY_FSTAB_VERSION := 2
 # build swipe recovery by default
 BOARD_RECOVERY_SWIPE := true
 
-# Charging mode
-BOARD_CHARGER_RES := device/samsung/p5100/res/charger
-
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
