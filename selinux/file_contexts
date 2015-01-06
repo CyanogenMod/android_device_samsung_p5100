@@ -28,6 +28,7 @@
 
 # System binaries
 /system/bin/pvrsrvinit                      u:object_r:pvrsrvinit_exec:s0
+/system/vendor/bin/pvrsrvinit               u:object_r:pvrsrvinit_exec:s0
 /system/vendor/bin/pvrsrvctl_SGX540_120     u:object_r:pvrsrvinit_exec:s0
 
 /system/bin/dock_kbd_attach                 u:object_r:dock_kbd_attach_exec:s0
