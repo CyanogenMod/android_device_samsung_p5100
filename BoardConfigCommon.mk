@@ -109,6 +109,8 @@ BOARD_SEPOLICY_UNION += \
     smc_pa.te \
     wpa_supplicant.te
 
+TARGET_NEEDS_NON_PIE_SUPPORT := true
+
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
