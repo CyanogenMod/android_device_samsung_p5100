@@ -476,7 +476,7 @@ void audio_set_wb_amr_callback(void *data, int enable)
         /* reopen the modem PCMs at the new rate */
         if (adev->in_call) {
             end_call(adev);
-            set_eq_filter(adev);
+            select_output_device(adev);
             start_call(adev);
         }
     }
@@ -676,10 +676,10 @@ static void select_output_device(struct espresso_audio_device *adev)
         }
 
         if (headset_on || headphone_on || speaker_on || earpiece_on) {
-            ALOGD("%s: set voicecall: voicecall_default", __func__);
+            ALOGD("%s: set voicecall route: voicecall_default", __func__);
             set_bigroute_by_array(adev->mixer, voicecall_default, 1);
         } else {
-            ALOGD("%s: set voicecall: voicecall_default_disable", __func__);
+            ALOGD("%s: set voicecall route: voicecall_default_disable", __func__);
             set_bigroute_by_array(adev->mixer, voicecall_default_disable, 1);
         }
 
@@ -691,19 +691,27 @@ static void select_output_device(struct espresso_audio_device *adev)
             set_bigroute_by_array(adev->mixer, default_input_disable, 1);
         }
 
-        if (headset_on || headphone_on) {
-            ALOGD("%s: set voicecall: headset_input", __func__);
+        if (headset_on) {
+            ALOGD("%s: set voicecall route: headset_input", __func__);
             set_bigroute_by_array(adev->mixer, headset_input, 1);
+        } else {
+            ALOGD("%s: set voicecall route: headset_input_disable", __func__);
+            set_bigroute_by_array(adev->mixer, headset_input_disable, 1);
         }
 
         if (bt_on) {
             // bt uses a different port (PORT_BT) for playback, reopen the pcms
             end_call(adev);
             start_call(adev);
-            ALOGD("%s: set voicecall: bt_input", __func__);
+            ALOGD("%s: set voicecall route: bt_input", __func__);
             set_bigroute_by_array(adev->mixer, bt_input, 1);
-            ALOGD("%s: set voicecall: bt_output", __func__);
+            ALOGD("%s: set voicecall route: bt_output", __func__);
             set_bigroute_by_array(adev->mixer, bt_output, 1);
+        } else {
+            ALOGD("%s: set voicecall route: bt_input_disable", __func__);
+            set_bigroute_by_array(adev->mixer, bt_input_disable, 1);
+            ALOGD("%s: set voicecall route: bt_output_disable", __func__);
+            set_bigroute_by_array(adev->mixer, bt_output_disable, 1);
         }
         set_incall_device(adev);
     }
@@ -2578,6 +2586,21 @@ static int adev_set_parameters(struct audio_hw_device *dev, const char *kvpairs)
             adev->screen_off = true;
     }
 
+    ret = str_parms_get_str(parms, "noise_suppression", value, sizeof(value));
+    if (ret >= 0) {
+        if (strcmp(value, "on") == 0) {
+            ALOGE("%s: enabling two mic control", __func__);
+            ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_ON);
+            /* sub mic */
+            set_bigroute_by_array(adev->mixer, noise_suppression, 1);
+        } else {
+            ALOGE("%s: disabling two mic control", __func__);
+            ril_set_two_mic_control(&adev->ril, AUDIENCE, TWO_MIC_SOLUTION_OFF);
+            /* sub mic */
+            set_bigroute_by_array(adev->mixer, noise_suppression_disable, 1);
+        }
+    }
+
     str_parms_destroy(parms);
     return ret;
 }
@@ -2802,6 +2825,7 @@ static const struct {
     { AUDIO_DEVICE_OUT_ALL_SCO, "sco-out" },
 
     { AUDIO_DEVICE_IN_BUILTIN_MIC, "builtin-mic" },
+    { AUDIO_DEVICE_IN_BACK_MIC, "back-mic" },
     { AUDIO_DEVICE_IN_WIRED_HEADSET, "headset-in" },
     { AUDIO_DEVICE_IN_ALL_SCO, "sco-in" },
 };

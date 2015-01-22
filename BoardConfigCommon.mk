@@ -31,7 +31,7 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE :=
+# BOARD_KERNEL_CMDLINE :=
 
 # Init
 TARGET_PROVIDES_INIT := true
@@ -51,9 +51,6 @@ USE_OPENGL_RENDERER := true
 # Boot Animation
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_USE_RGB565 := true
-
-# Camera
-COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 12
@@ -79,6 +76,8 @@ WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/wifi/bcmdhd_sta.b
 WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/wifi/bcmdhd_apsta.bin nvram_path=/system/etc/wifi/nvram_net.txt"
 WIFI_BAND                        := 802_11_ABG
 BOARD_HAVE_SAMSUNG_WIFI          := true
+BOARD_NO_APSME_ATTR              := true
+BOARD_NO_WIFI_HAL                := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -100,9 +99,14 @@ BOARD_SEPOLICY_UNION += \
     file_contexts \
     file.te \
     device.te \
+    dock_kbd_attach.te \
     domain.te \
+    geomagneticd.te \
+    init.te \
+    orientationd.te \
     pvrsrvinit.te \
     rild.te \
+    smc_pa.te \
     wpa_supplicant.te
 
 # Recovery
@@ -111,11 +115,12 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/fstab.espresso10
 RECOVERY_FSTAB_VERSION := 2
 
-# Charging mode
-BOARD_CHARGER_RES := device/samsung/p5100/res/charger
+# build swipe recovery by default
+BOARD_RECOVERY_SWIPE := true
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
