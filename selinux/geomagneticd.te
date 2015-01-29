@@ -1,5 +1,10 @@
 # geomagneticd
 type geomagneticd, domain;
 type geomagneticd_exec, exec_type, file_type;
+type sensor_data_file, file_type, data_file_type;
 
 init_daemon_domain(geomagneticd)
+
+allow geomagneticd sensor_data_file:file { write };
+allow geomagneticd input_device:chr_file { open read ioctl };
+allow geomagneticd input_device:dir { open read };
