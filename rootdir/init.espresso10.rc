@@ -56,6 +56,7 @@ on fs
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 # Restorecon
+    restorecon /efs/nv.log
     restorecon /efs/nv_data.bin
     restorecon /efs/nv_data.bin.md5
     restorecon /efs/.nv_core.bak
@@ -283,7 +284,6 @@ service pvrsrvinit /system/bin/pvrsrvinit
     class core
     user root
     group root
-    seclabel u:r:pvrsrvinit:s0
     oneshot
 
 service pvrsrvctl /system/vendor/bin/pvrsrvctl_SGX540_120 --start --no-module
@@ -307,20 +307,17 @@ service smc_pa /system/bin/smc_pa_ctrl \
     class core
     user root
     group root
-    seclabel u:r:smc_pa:s0
     oneshot
 
 service orientationd /system/bin/orientationd
     class main
     user compass
     group input
-    seclabel u:r:orientationd:s0
 
 service geomagneticd /system/bin/geomagneticd
     class main
     user compass
     group system input
-    seclabel u:r:geomagneticd:s0
 
 # create virtual SD card at /storage/sdcard0, based on the /data/media directory
 # daemon will drop to user/group system/media_rw after initializing
@@ -401,6 +398,7 @@ service cpboot-daemon /sbin/cbd -d -p 8
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r
+    seclabel u:r:cbd:s0
     disabled
 
 on property:init.svc.pvrsrvinit=stopped
@@ -412,7 +410,6 @@ service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     socket gps seqpacket 0660 gps system
     user gps
     group system inet sdcard_rw
-    seclable u:r:object_r:gpsd:s0
 
 # TVout
 service TvoutService_C /system/bin/bintvoutservice
@@ -424,7 +421,6 @@ service TvoutService_C /system/bin/bintvoutservice
 service dock_kbd_attach /system/bin/dock_kbd_attach /dev/ttyO3
     class main
     user root
-    seclabel u:r:dock_kbd_attach:s0
     oneshot
 
 # LPM
