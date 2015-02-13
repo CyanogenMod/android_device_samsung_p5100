@@ -1,2 +1,3 @@
 type efs_block_device, dev_type;
 type rfkill_device, dev_type;
+type gpu_device, dev_type, mlstrustedobject;
