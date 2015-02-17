@@ -80,6 +80,10 @@ PRODUCT_PACKAGES += \
     libinvensense_mpl \
     power.piranha
 
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.isUsbOtgEnabled=true
+
 # Charger
 PRODUCT_PACKAGES += \
     charger \
