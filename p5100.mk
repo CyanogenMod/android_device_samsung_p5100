@@ -30,7 +30,7 @@ PRODUCT_PACKAGES += \
     SamsungServiceMode
 
 # RIL
-PRODUCT_PROPERTY_OVERRIDES += \
+ADDITIONAL_BUILD_PROPERTIES += \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0
 
 # These are the hardware-specific features
