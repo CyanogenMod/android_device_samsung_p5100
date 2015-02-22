@@ -127,6 +127,15 @@ s         This integer should equal the sum of the corresponding value for each
          that can be set by the user. -->
     <integer name="config_screenBrightnessDim">20</integer>
 
+    <!-- Minimum allowable screen brightness to use in a very dark room.
+         This value sets the floor for the darkest possible auto-brightness
+         adjustment. It is expected to be somewhat less than the first entry in
+         config_autoBrightnessLcdBacklightValues so as to allow the user to have
+         some range of adjustment to dim the screen further than usual in very
+         dark rooms. The contents of the screen must still be clearly visible
+         in darkness (although they may not be visible in a bright room). -->
+    <integer name="config_screenBrightnessDark">5</integer>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 control points as follows:
          (1-based arrays)
