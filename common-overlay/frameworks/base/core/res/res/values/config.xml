@@ -277,4 +277,7 @@ s         This integer should equal the sum of the corresponding value for each
     <!-- Whether UI for multi user should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
 
+    <!-- Is the device LTE capable -->
+    <bool name="config_lte_capable">false</bool>
+
 </resources>
