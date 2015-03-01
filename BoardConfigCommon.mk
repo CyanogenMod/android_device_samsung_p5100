@@ -116,5 +116,8 @@ TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/fstab.espresso10
 RECOVERY_FSTAB_VERSION := 2
 BOARD_HAS_DOWNLOAD_MODE := true
 
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/p3100/custombootimg.mk
+TARGET_NOT_USE_GZIP_RECOVERY_RAMDISK := true
+
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
