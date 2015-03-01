@@ -118,5 +118,7 @@ RECOVERY_FSTAB_VERSION := 2
 # build swipe recovery by default
 BOARD_RECOVERY_SWIPE := true
 
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/p3100/custombootimg.mk
+
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
