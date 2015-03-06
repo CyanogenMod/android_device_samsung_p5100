@@ -75,6 +75,9 @@ BOARD_HAVE_SAMSUNG_WIFI          := true
 BOARD_NO_APSME_ATTR              := true
 BOARD_NO_WIFI_HAL                := true
 
+# Audio
+BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
