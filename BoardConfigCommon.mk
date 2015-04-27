@@ -114,9 +114,7 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/fstab.espresso10
 RECOVERY_FSTAB_VERSION := 2
-
-# build swipe recovery by default
-BOARD_RECOVERY_SWIPE := true
+BOARD_HAS_DOWNLOAD_MODE := true
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
