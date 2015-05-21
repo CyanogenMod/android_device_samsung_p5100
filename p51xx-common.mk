@@ -17,7 +17,7 @@
 # Include omap4 common makefile
 $(call inherit-product, device/samsung/omap4-common/common.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/common-overlay
+DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/overlay/aosp-common
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
