@@ -113,7 +113,7 @@ BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SUPPRESS_EMMC_WIPE := true
-TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/fstab.espresso10
+TARGET_RECOVERY_FSTAB := device/samsung/p5100/rootdir/etc/fstab.espresso10
 RECOVERY_FSTAB_VERSION := 2
 
 # build swipe recovery by default
