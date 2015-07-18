@@ -1,5 +1,0 @@
-#init
-
-allow init self:process execmem;
-allow init self:capability sys_module;
-

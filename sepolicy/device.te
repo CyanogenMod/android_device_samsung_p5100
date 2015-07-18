@@ -1,0 +1,3 @@
+# Device types
+type dock_device, dev_type;
+type smc_device, dev_type;
