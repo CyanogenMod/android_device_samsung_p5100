@@ -1,2 +1,0 @@
-type efs_block_device, dev_type;
-type rfkill_device, dev_type;

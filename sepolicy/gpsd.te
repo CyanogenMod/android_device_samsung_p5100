@@ -1,0 +1,12 @@
+# gpsd - GPS daemon
+allow gpsd rild:unix_stream_socket { connectto };
+allow gpsd self:process { execmem };
+allow gpsd sysfs_wake_lock:file { read write };
+
+#Label with gps_data_file
+type_transition gpsd system_data_file:dir gps_data_file ".gps.interface.pipe.to_jni";
+type_transition gpsd system_data_file:dir gps_data_file ".gps.interface.pipe.to_gpsd";
+type_transition gpsd system_data_file:fifo_file gps_data_file ".gps.interface.pipe.to_jni";
+type_transition gpsd system_data_file:fifo_file gps_data_file ".gps.interface.pipe.to_gpsd";
+allow gpsd gps_data_file:fifo_file create_file_perms;
+allow gpsd gps_data_file:dir { add_name write };

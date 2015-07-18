@@ -95,21 +95,17 @@ BOARD_USES_SECURE_SERVICES := true
 
 # Selinux
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/p5100/selinux
+    device/samsung/p5100/sepolicy
 
 BOARD_SEPOLICY_UNION += \
-    file_contexts \
-    file.te \
     device.te \
     dock_kbd_attach.te \
-    domain.te \
+    file.te \
+    file_contexts \
     geomagneticd.te \
-    init.te \
     orientationd.te \
-    pvrsrvinit.te \
-    rild.te \
-    smc_pa.te \
-    wpa_supplicant.te
+    gpsd.te \
+    smc_pa.te
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
