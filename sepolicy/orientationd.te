@@ -1,0 +1,9 @@
+# orientationd
+type orientationd, domain;
+type orientationd_exec, exec_type, file_type;
+
+init_daemon_domain(orientationd)
+
+allow orientationd input_device:chr_file { read write open ioctl };
+allow orientationd input_device:dir { search read open };
+allow orientationd self:process { execmem };
