@@ -79,6 +79,13 @@ PRODUCT_PACKAGES += \
     libinvensense_mpl \
     power.piranha
 
+# F2FS filesystem
+PRODUCT_PACKAGES += \
+    mkfs.f2fs \
+    fsck.f2fs \
+    fibmap.f2fs \
+    f2fstat
+
 # Storage
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.isUsbOtgEnabled=true
