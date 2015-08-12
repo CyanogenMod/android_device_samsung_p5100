@@ -17,8 +17,6 @@
 # Include espresso-common makefile
 $(call inherit-product, device/samsung/espresso-common/espresso-common.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/espresso-common/overlay/aosp-common
-
 LOCAL_PATH := device/samsung/p5100
 
 # Enable higher-res drawables while keeping mdpi as primary source
