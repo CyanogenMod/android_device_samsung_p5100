@@ -1,8 +1,0 @@
-# smc_pa
-type smc_pa, domain;
-type smc_pa_exec, exec_type, file_type;
-
-init_daemon_domain(smc_pa)
-
-allow smc_pa self:capability { dac_override };
-allow smc_pa smc_device:chr_file { read write open ioctl };

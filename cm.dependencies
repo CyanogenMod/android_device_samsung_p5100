@@ -4,6 +4,10 @@
         "target_path": "device/samsung/omap4-common"
     },
     {
+        "repository": "android_device_samsung_espresso-common",
+        "target_path": "device/samsung/espresso-common"
+    },
+    {
         "repository": "android_kernel_samsung_espresso10",
         "target_path": "kernel/samsung/espresso10"
     },

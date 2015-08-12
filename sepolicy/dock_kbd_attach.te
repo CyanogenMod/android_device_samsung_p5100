@@ -1,8 +1,0 @@
-# dock_kbd_attach
-type dock_kbd_attach, domain;
-type dock_kbd_attach_exec, exec_type, file_type;
-
-init_daemon_domain(dock_kbd_attach)
-
-allow dock_kbd_attach dock_device:chr_file { open read write ioctl };
-allow dock_kbd_attach self:capability { sys_admin };

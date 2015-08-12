@@ -1,8 +1,0 @@
-# gpsd - GPS daemon
-allow gpsd rild:unix_stream_socket { connectto };
-allow gpsd self:process { execmem };
-allow gpsd sysfs_wake_lock:file { read write };
-
-# TODO - Label with gps_data_file
-allow gpsd system_data_file:dir { write add_name };
-allow gpsd system_data_file:fifo_file { create setattr write open };

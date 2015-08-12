@@ -1,2 +1,0 @@
-# sysinit
-allow sysinit surfaceflinger_exec:file { getattr };

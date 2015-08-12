@@ -30,7 +30,7 @@ $(call inherit-product, device/samsung/p5100/full_p5100.mk)
 
 # CyanogenMod specific overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/overlay/cm
-DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/overlay/cm-common
+DEVICE_PACKAGE_OVERLAYS += device/samsung/espresso-common/overlay/cm-common
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := p5100
