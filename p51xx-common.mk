@@ -26,7 +26,8 @@ PRODUCT_LOCALES += mdpi
 
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.espresso \
+    fstab.espresso10 \
+    init.device.espresso10.rc \
     init.espresso10.usb.rc \
     init.espresso10.rc \
     ueventd.espresso10.rc
