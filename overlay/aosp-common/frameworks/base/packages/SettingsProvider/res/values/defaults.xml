@@ -18,4 +18,7 @@
 -->
 <resources>
     <bool name="def_screen_brightness_automatic_mode">true</bool>
+    <!-- Default value for whether or not to pulse the notification LED when there is a pending notification -->
+    <!-- NOTE: Tab 2 doesn't have a notification LED -->
+    <bool name="def_notification_pulse">false</bool>
 </resources>
