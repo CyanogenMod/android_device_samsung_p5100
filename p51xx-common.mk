@@ -32,4 +32,4 @@ PRODUCT_PACKAGES += \
     init.espresso10.rc \
     ueventd.espresso10.rc
 
-$(call inherit-product, vendor/samsung/p51xx/p51xx-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/p51xx/p51xx-vendor.mk)

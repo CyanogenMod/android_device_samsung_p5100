@@ -39,5 +39,5 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
 
-# Use the non-open-source parts
-$(call inherit-product, vendor/samsung/p51xx/p5100-vendor.mk)
+# Use the non-open-source parts, if they're present
+$(call inherit-product-if-exists, vendor/samsung/p51xx/p5100-vendor.mk)
