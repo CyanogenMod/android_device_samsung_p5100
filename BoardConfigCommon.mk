@@ -20,9 +20,5 @@
 
 -include device/samsung/espresso-common/BoardConfigCommon.mk
 
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/p5100/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/p5100/bluetooth/vnd_espresso10.txt
-
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p51xx/BoardConfigVendor.mk
