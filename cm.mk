@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2012 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,24 +22,30 @@ PRODUCT_RELEASE_NAME := p5100
 TARGET_SCREEN_HEIGHT := 480
 TARGET_SCREEN_WIDTH := 1280
 
-# Inherit some common CM stuff.
+# Inherit common CM configurations
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
-# Inherit device configuration
-$(call inherit-product, device/samsung/p5100/full_p5100.mk)
 
 # CyanogenMod specific overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/p5100/overlay/cm
 DEVICE_PACKAGE_OVERLAYS += device/samsung/espresso-common/overlay/cm-common
 
-## Device identifier. This must come after all inclusions
+# Use 44.1 kHz UI sounds
+$(call inherit-product-if-exists, frameworks/base/data/sounds/AudioPackage13.mk)
+
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit device specific configurations
+$(call inherit-product, device/samsung/p5100/device.mk)
+
+# Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := p5100
 PRODUCT_NAME := cm_p5100
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := GT-P5100
 PRODUCT_MANUFACTURER := samsung
 
-#Set build fingerprint / ID / Prduct Name ect.
+# Set build fingerprint / ID / Product Name etc.
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=espresso10rfxx \
     TARGET_DEVICE=espresso10rf \
