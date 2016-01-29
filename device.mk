@@ -23,7 +23,6 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay/aosp
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/tiny_hw.xml:system/etc/sound/espresso10rf \
     $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
 
 # Packages
