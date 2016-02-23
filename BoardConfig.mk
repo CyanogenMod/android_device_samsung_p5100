@@ -21,6 +21,3 @@ TARGET_BOARD_INFO_FILE := device/samsung/p5100/board-info.txt
 
 # assert
 TARGET_OTA_ASSERT_DEVICE := espresso,p5100,GT-P5100,espresso10rf,espresso10rfxx
-
-# Use the non-open-source parts, if they're present
--include vendor/samsung/p51xx/BoardConfigVendor.mk
