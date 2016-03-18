@@ -14,4 +14,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-./../../../device/samsung/espersso-common/extract-file-s3g.sh
+./../../../device/samsung/espresso-common/extract-files-3g.sh
