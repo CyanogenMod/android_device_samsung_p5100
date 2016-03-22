@@ -20,4 +20,4 @@
 TARGET_BOARD_INFO_FILE := device/samsung/p5100/board-info.txt
 
 # assert
-TARGET_OTA_ASSERT_DEVICE := espresso,p5100,GT-P5100,espresso10rf,espresso10rfxx
+TARGET_OTA_ASSERT_DEVICE := espresso-common,p5100,GT-P5100,espresso10rf,espresso10rfxx
