@@ -15,7 +15,7 @@
 #
 
 # Include common espresso BoardConfig
--include device/samsung/espresso-common/BoardConfigCommon.mk
+include device/samsung/espresso-common/BoardConfig3g.mk
 
 TARGET_BOARD_INFO_FILE := device/samsung/p5100/board-info.txt
 
