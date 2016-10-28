@@ -4,17 +4,6 @@
         "target_path": "device/samsung/espresso-common"
     },
     {
-<<<<<<< HEAD
-=======
-        "repository": "android_hardware_ti_omap4",
-        "target_path": "hardware/ti/omap4"
-    },
-    {
-        "repository": "android_kernel_samsung_espresso10",
-        "target_path": "kernel/samsung/espresso10"
-    },
-    {
->>>>>>> f36d920... P3100: use libsecril-shim
         "repository": "android_packages_apps_SamsungServiceMode",
         "target_path": "packages/apps/SamsungServiceMode"
     }
