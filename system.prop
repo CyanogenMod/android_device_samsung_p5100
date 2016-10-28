@@ -1,7 +1,7 @@
 #
 # system.prop for espresso10
 #
-rild.libpath=/system/vendor/lib/libsec-ril.so
+rild.libpath=/system/lib/libsecril-shim.so
 rild.libargs=-d /dev/ttyGS0 --
 telephony.lteOnCdmaDevice=0
 ro.ril.hsxpa=1
