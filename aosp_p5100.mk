@@ -14,14 +14,14 @@
 # limitations under the License.
 #
 
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
 # Inherit device specific configuration
 $(call inherit-product, device/samsung/p5100/device.mk)
 
-PRODUCT_DEVICE := p5100
+# Inherit from the common Open Source product configuration
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 PRODUCT_NAME := aosp_p5100
+PRODUCT_DEVICE := p5100
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := GT-P5100
 PRODUCT_MANUFACTURER := Samsung
